@@ -34,3 +34,5 @@ canvas小游戏指南
 
 
 
+
+![](https://user-gold-cdn.xitu.io/2018/5/15/16361c7f04234691?w=400&h=696&f=gif&s=4310252)
