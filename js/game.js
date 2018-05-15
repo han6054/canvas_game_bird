@@ -32,7 +32,7 @@ class Game {
             })
             this.bird.update()
             this.bird.render()
-        }, 20)
+        },20)
     }
     bindEvent() {
         this.canvas.onclick =()=> {
