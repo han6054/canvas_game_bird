@@ -7,37 +7,23 @@ class Game {
         this.canvas.width = W
         this.canvas.height = H
         this.timer = null;
+        this.frame = 0
+        this.scene = 0
+        this.score = 0
+        this.medal = [0,0,0]
+        if(!localStorage.getItem("FB")){
+            localStorage.setItem("FB",JSON.stringify(this.medal));
+        }
         this.imgLoad()
-        this.bindEvent()
-        this.pipeArr  = []
-        this.iframe = 0
     }
     start() {
-        this.bg = new BackGround()
-        this.land = new Land()
-        this.bird = new Bird()
+        this.sceneManager = new sceneManager()
+        this.sceneManager.enter(this.scene)
         this.timer = setInterval(() => {
-            this.iframe ++
+            this.frame ++
             this.clear()
-            this.bg.update()
-            this.bg.render()
-            this.land.update()
-            this.land.render()
-            if(this.iframe%300 === 0) {
-                new Pipe()
-            }
-            this.pipeArr.forEach((item) => {
-                item.update()
-                item.render()
-            })
-            this.bird.update()
-            this.bird.render()
+            this.sceneManager.updateRender();
         },20)
-    }
-    bindEvent() {
-        this.canvas.onclick =()=> {
-           this.bird.fly()
-        }
     }
     clear() {
         this.draw.clearRect(0,0,this.canvas.width,this.canvas.height);

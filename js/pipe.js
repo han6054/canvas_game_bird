@@ -7,6 +7,7 @@ class Pipe {
         this.h2 = game.canvas.height - game.allImg["land"].height - this.h1 - this.space;
         this.x = game.canvas.width;
         this.speed = 1
+        this.flag = true
         game.pipeArr.push(this)
     }
 
@@ -25,7 +26,11 @@ class Pipe {
         // 碰撞检测
         // 1. B.x2>= P.x1 && B.x1 <= P.x2 && B.y1 <= P.y1 && B.y2 >=  P.y2
         if (game.bird.x2 >= this.x1 && game.bird.x1 <= this.x2 && (game.bird.y1 <= this.y1 || game.bird.y2 >= this.y2)) {
-            clearTimeout(game.timer)
+            game.sceneManager.enter(3)
+        }
+        if(this.flag && game.bird.x1>this.x2) {
+            game.score++
+            this.flag = false
         }
     }
     render() {
